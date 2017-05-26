@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!--SETUP-->
+		<title> Grid Size Changer </title>
+		<!--STYLES-->
+		<link href='http://fonts.googleapis.com/css?family=Noto+Sans' rel='stylesheet' type='text/css'>
+		<!-- <link href='responsiveDemoStyle3.css' rel='stylesheet' type='text/css'> -->
+	</head>
+	<body>
+		<!--CONTENT-->
+		K-Value: <input id="kValue" type="text" size="8" value="6">
+		# Nodes: <input id="numNodes" type="text" size="8" value="5000">
+		Time Between: <input id="time" type="text" size="8" value="100">
+		<br>
+		<canvas id="canvas" width="1000" height="1000" style="width:500px;height:500px;border:solid 1px black"></canvas>
+		<canvas id="centroidMovement" width="1000" height="1000" style="width:500px;height:500px;border:solid 1px black"></canvas>
+		<br>
+		<button onclick="generateData()">generateData</button>
+		<button onclick="assignCategory()">assignCategory</button>
+		<button onclick="run()">Start</button>
+
+		<!--SCRIPTS-->
+		<script src="script.js"></script>
+	</body>
+</html>
