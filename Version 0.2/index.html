@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!--SETUP-->
+		<title> Grid Size Changer </title>
+		<!--STYLES-->
+		<!--<link href='http://fonts.googleapis.com/css?family=Noto+Sans' rel='stylesheet' type='text/css'>-->
+		<!-- <link href='responsiveDemoStyle3.css' rel='stylesheet' type='text/css'> -->
+	</head>
+	<body>
+		<!--CONTENT-->
+		Choose Data:
+		<select id="dataChoice">
+			<option value="1"> </option>
+			<option value="2"> Uniform Data </option>
+			<option value="3"> Iris Data </option>
+		</select>
+		K-Value: <input id="kValue" type="text" size="8" value="6">
+		<span id="uniformInputs" hidden>
+			<br>
+			# Nodes: <input id="numNodes" type="text" size="8" value="150">
+			<button onclick="generateUniformData()">Generate New Data</button>
+		</span>
+		<br>
+		<canvas id="canvas0" width="600" height="600" style="width:300px;height:300px;border:solid 1px black"></canvas>
+		<canvas id="canvas1" width="600" height="600" style="width:300px;height:300px;border:solid 1px black"></canvas>
+		<canvas id="canvas2" width="600" height="600" style="width:300px;height:300px;border:solid 1px black"></canvas>
+		<canvas id="canvas3" width="600" height="600" style="width:300px;height:300px;border:solid 1px black"></canvas>
+		<br>
+		<button onclick="run()">Start</button>
+		<!--SCRIPTS-->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script src="dataLoading.js"></script>
+		<script src="kmeans.js"></script>
+		<script src="high.js"></script>
+	</body>
+</html>
