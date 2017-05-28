@@ -1,15 +1,20 @@
 var data = []
+var looper
 
 $(document).ready(function(){
 	$("#dataChoice").change(function(){
 		var dataChoice = document.getElementById("dataChoice")
 		var uniformInputs = document.getElementById("uniformInputs")
-		if (dataChoice.value == 2) {
+		if (dataChoice.value == 2 || dataChoice.value == 3) {
 			uniformInputs.hidden = false
-			generateUniformData()
+			if (dataChoice.value == 2) {
+				generateUniformData()
+			} else if (dataChoice.value == 3){
+				generateRingedData()
+			}
 		} else {
 			uniformInputs.hidden = true
-			if (dataChoice.value == 3) {
+			if (dataChoice.value == 4){
 				$.get("iris.dat", function(response) {
 					response = response.substring(0,response.length-1)
 					var irisData = response.split("\n");
@@ -24,11 +29,19 @@ $(document).ready(function(){
 					data = irisData
 					plotData()
 				});
-
 			}
 		}
 	});
 });
+function generateNewData() {
+	var dataChoice = document.getElementById("dataChoice")
+	if (dataChoice.value == 2) {
+		generateUniformData()
+	} else if (dataChoice.value == 3){
+		generateRingedData()
+	}
+	clearInterval(looper)
+}
 
 function generateUniformData() {
 	var numNodes = document.getElementById("numNodes");
@@ -39,6 +52,26 @@ function generateUniformData() {
 	}
 	plotData()
 
+}
+
+function generateRingedData() {
+	var numNodes = document.getElementById("numNodes");
+
+	data = []
+	for (var i = 0; i<numNodes.value; i++) {
+		var radius = Math.random()
+		if (radius < 0.3 || radius > 0.6 && radius < 0.7) {
+			var radians = Math.random()*2*Math.PI
+			var x = Math.cos(radians)/2
+			var y = Math.sin(radians)/2
+			//console.log(Math.sqrt(x*x+y*y))
+			data.push([radius*x+0.5, radius*y+0.5])
+		} else {
+			i--
+		}
+	}
+	//console.log(data)
+	plotData()
 }
 
 function normalizeData(dataset) {
@@ -92,24 +125,25 @@ function plotData() {
 	}
 }
 function run() {
+	clearInterval(looper)
 	// KMEANS
 	randomizeCentroidLocations_KMEANS()
 	makeRandomColors_KMEANS()
 	// HIGH
 	makeRandomColors_HIGH()
 	assignIndividualCategories_HIGH()
-	/*for (var i = 0; i<110; i++) {
-		replotData_HIGH()
-		mergeCategories_HIGH()
-	}*/
-	setInterval(function() {
+	looper = setInterval(function() {
 		// KMEANS
 		assignCategory_KMEANS()
 		replotData_KMEANS()
 		calcCentroids_KMEANS()
 		drawCentroids_KMEANS()
 		// HIGH
-		replotData_HIGH()
-		mergeCategories_HIGH()
-	},100);
+		for (var i = 0; i<10; i++) {
+			calcCentroids_HIGH()
+			replotData_HIGH()
+			drawCentroids_HIGH()
+			mergeCategories_HIGH()
+		}
+	},200);
 }
