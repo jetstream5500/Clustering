@@ -33,6 +33,10 @@ $(document).ready(function(){
 		}
 	});
 });
+
+function stop() {
+	clearInterval(looper)
+}
 function generateNewData() {
 	var dataChoice = document.getElementById("dataChoice")
 	if (dataChoice.value == 2) {
@@ -99,7 +103,7 @@ function clearCanvas(canvasName) {
 }
 
 function plotData() {
-	for (var i = 0; i<4; i++) {
+	for (var i = 0; i<3; i++) {
 		clearCanvas("canvas"+i)
 		var canvas = document.getElementById("canvas"+i)
 		var ctx = canvas.getContext('2d');
@@ -116,7 +120,7 @@ function plotData() {
 			ctx.lineWidth = 2;
 			// x y reversed
 			ctx.beginPath();
-			ctx.arc(datapoint[0]*canvas.height, canvas.width-datapoint[1]*canvas.width,12,0,2*Math.PI);
+			ctx.arc(datapoint[0]*canvas.height, canvas.width-datapoint[1]*canvas.width,15,0,2*Math.PI);
 			ctx.fill();
 			ctx.stroke();
 			//ctx.fillRect(scaledLoc.x,scaledLoc.y,pixelSize,pixelSize);
@@ -125,13 +129,20 @@ function plotData() {
 	}
 }
 function run() {
+	var numNodes = document.getElementById("numNodes")
 	clearInterval(looper)
+	reset_FUZZY()
 	// KMEANS
 	randomizeCentroidLocations_KMEANS()
 	makeRandomColors_KMEANS()
 	// HIGH
 	makeRandomColors_HIGH()
 	assignIndividualCategories_HIGH()
+	// FUZZY
+	randomizeCentroidLocations_FUZZY()
+	makeRandomColors_FUZZY()
+	//console.log(centroids_FUZZY)
+	//console.log(colors_FUZZY)
 	looper = setInterval(function() {
 		// KMEANS
 		assignCategory_KMEANS()
@@ -139,11 +150,16 @@ function run() {
 		calcCentroids_KMEANS()
 		drawCentroids_KMEANS()
 		// HIGH
-		for (var i = 0; i<10; i++) {
+		for (var i = 0; i<numNodes.value/10; i++) {
 			calcCentroids_HIGH()
 			replotData_HIGH()
 			drawCentroids_HIGH()
 			mergeCategories_HIGH()
 		}
-	},200);
+		// FUZZY
+		assignCategory_FUZZY()
+		replotData_FUZZY()
+		calcCentroids_FUZZY()
+		drawCentroids_FUZZY()
+	},100);
 }

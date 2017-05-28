@@ -70,7 +70,7 @@ function drawCentroids_HIGH() {
 			ctx.lineWidth = 4;
 			// x y reversed
 			ctx.beginPath();
-			ctx.arc(centroid[0]*canvas.height, canvas.width-centroid[1]*canvas.width,20,0,2*Math.PI);
+			ctx.arc(centroid[0]*canvas.height, canvas.width-centroid[1]*canvas.width,25,0,2*Math.PI);
 			ctx.fill();
 			ctx.stroke();
 		}
@@ -96,7 +96,7 @@ function replotData_HIGH() {
 		ctx.lineWidth = 2;
 		// x y reversed
 		ctx.beginPath();
-		ctx.arc(datapoint[0]*canvas.height, canvas.width-datapoint[1]*canvas.width,12,0,2*Math.PI);
+		ctx.arc(datapoint[0]*canvas.height, canvas.width-datapoint[1]*canvas.width,15,0,2*Math.PI);
 		ctx.fill();
 		ctx.stroke();
 		//ctx.fillRect(scaledLoc.x,scaledLoc.y,pixelSize,pixelSize);
