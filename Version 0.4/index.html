@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<html lang="en">
+		<meta charset="utf-8"/>
+		<!--SETUP-->
+		<title> Clustering Algorithms </title>
+		<!--STYLES-->
+		<!--<link href='http://fonts.googleapis.com/css?family=Noto+Sans' rel='stylesheet' type='text/css'>-->
+		<!-- <link href='responsiveDemoStyle3.css' rel='stylesheet' type='text/css'> -->
+	</head>
+	<body>
+		<!--CONTENT-->
+		<center>
+			<h1> Clustering Algorithms </h1>
+			<h3> (K-Means Clustering, Hierarchical Clustering, K_Means w/ Fuzzy Boundaries)</h3>
+		</center>
+		<br>
+		Choose Data:
+		<select id="dataChoice">
+			<option value="1"> </option>
+			<option value="2"> Uniform Data </option>
+			<option value="3"> Ringed Data </option>
+			<option value="4"> Iris Data </option>
+		</select>
+		K-Value: <input id="kValue" type="text" size="8" value="3">
+		Max Merge Size: <input id="maxMergeSize" type="text" size="8" value="0.15">
+		Degree of Fuzziness: <input id="fuzzyValue" type="text" size="8" value="8">
+		<span id="generatedInputs" hidden>
+			<br>
+			# Nodes: <input id="numNodes" type="text" size="8" value="150">
+			<button onclick="generateNewData()">Generate New Data</button>
+		</span>
+		<span id="realInputs" hidden>
+			<br>
+			X-Axis:
+			<select id="xaxis" onchange="plotData()">
+			</select>
+			Y-Axis:
+			<select id="yaxis" onchange="plotData()">
+			</select>
+		</span>
+		<br>
+		<canvas id="canvas0" width="800" height="800" style="width:400px;height:400px;border:solid 1px black"></canvas>
+		<canvas id="canvas1" width="800" height="800" style="width:400px;height:400px;border:solid 1px black"></canvas>
+		<canvas id="canvas2" width="800" height="800" style="width:400px;height:400px;border:solid 1px black"></canvas>
+		<br>
+		<button onclick="run()">Restart</button>
+		<button onclick="stop()">Stop</button>
+		<!--SCRIPTS-->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script src="dataLoading.js"></script>
+		<script src="kmeans.js"></script>
+		<script src="high.js"></script>
+		<script src="fuzzy.js"></script>
+	</body>
+</html>
