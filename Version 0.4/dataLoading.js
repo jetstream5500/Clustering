@@ -132,7 +132,9 @@ function normalizeData(dataset) {
 function clearCanvas(canvasName) {
 	var canvas = document.getElementById(canvasName);
 	var ctx = canvas.getContext('2d');
-	ctx.clearRect(0, 0, canvas.width, canvas.height);
+	ctx.fillStyle="#FFFFFF"; 
+	ctx.fillRect(0,0,canvas.width,canvas.height)
+	//ctx.clearRect(0, 0, canvas.width, canvas.height);
 	ctx.beginPath();
 	ctx.lineWidth="3";
 	ctx.strokeStyle="#CCCCCC"; // Green path
