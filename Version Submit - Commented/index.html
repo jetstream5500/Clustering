@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!--SETUP-->
+		<html lang="en">
+		<meta charset="utf-8"/>
+		<title> Clustering Algorithms </title>
+	</head>
+	<body style="background-color:#F0FAFF">
+		<!--CONTENT-->
+		<!--Title of Page-->
+		<center>
+			<h1> Clustering Algorithms </h1>
+			<h3> (K-Means Clustering, Hierarchical Clustering, K_Means w/ Fuzzy Boundaries)</h3>
+		</center>
+		<br>
+		<!--Data selection dropdown-->
+		Choose Data:
+		<select id="dataChoice">
+			<option value="1"> </option>
+			<option value="2"> Uniform Data </option>
+			<option value="3"> Ringed Data </option>
+			<option value="4"> Iris Data </option>
+		</select>
+		<!--Parameter choices-->
+		K-Value: <input id="kValue" type="text" size="8" value="3">
+		Max Merge Size: <input id="maxMergeSize" type="text" size="8" value="0.15">
+		Degree of Fuzziness: <input id="fuzzyValue" type="text" size="8" value="8">
+		<!--Button to generate a clean set of random data of the selected type-->
+		<span id="generatedInputs" hidden>
+			<br>
+			# Nodes: <input id="numNodes" type="text" size="8" value="150">
+			<button onclick="generateNewData()">Generate New Data</button>
+		</span>
+		<!--Attribute selection dropdown-->
+		<span id="realInputs" hidden>
+			<br>
+			X-Axis:
+			<select id="xaxis" onchange="plotData()">
+			</select>
+			Y-Axis:
+			<select id="yaxis" onchange="plotData()">
+			</select>
+		</span>
+		<br>
+		<!-- Canvases which all visualizations are drawn on-->
+		<canvas id="canvas0" width="800" height="800" style="width:400px;height:400px;border:solid 1px #BB0000"></canvas>
+		<canvas id="canvas1" width="800" height="800" style="width:400px;height:400px;border:solid 1px #00BB00"></canvas>
+		<canvas id="canvas2" width="800" height="800" style="width:400px;height:400px;border:solid 1px #0000BB"></canvas>
+		<br>
+		<!-- Start and stop button -->
+		<button onclick="run()">Restart</button>
+		<button onclick="stop()">Stop</button>
+		<br>
+		<br>
+		<!-- Author / School -->
+		Michael Orwin • CS / Math Major @ Kalamazoo College
+		<!--SCRIPTS-->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script src="dataLoading.js"></script>
+		<script src="kmeans.js"></script>
+		<script src="high.js"></script>
+		<script src="fuzzy.js"></script>
+	</body>
+</html>
